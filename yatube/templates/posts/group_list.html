@@ -1,0 +1,29 @@
+<<!DOCTYPE html> 
+<html lang="ru"> 
+{% extends 'base.html' %}
+{% block title %} 
+  Последние посты в группе {{ group_title }}
+{% endblock title %} 
+{% block content %}
+  <h1>{{ group.title }}</h1>
+    <p>
+      {{ group.description }}
+    </p>  
+      {% for post in posts %}
+        </article>
+          <ul> 
+            <li>
+              Автор: {{ post.author.get_full_name }}
+            </li>
+            <li>
+              Дата публикации: {{ post.pub_date|date:"d E Y" }}
+            </li>
+          </ul>
+            <p>{{ post.text }}</p>    
+            {% if post.group %}   
+              <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы {{ posts.group_title }}</a>
+            {% endif %} 
+            {% if not forloop.last %}<hr>{% endif %}
+        </article>
+      {% endfor %}
+{% endblock %}  
