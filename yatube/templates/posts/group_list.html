@@ -1,11 +1,9 @@
-<<!DOCTYPE html> 
-<html lang="ru"> 
 {% extends 'base.html' %}
 {% block title %} 
-  Последние посты в группе {{ group_title }}
+  Последние посты в группе {{ group }}
 {% endblock title %} 
 {% block content %}
-  <h1>{{ group.title }}</h1>
+  <h1>{{ group }}</h1>
     <p>
       {{ group.description }}
     </p>  
@@ -20,9 +18,7 @@
             </li>
           </ul>
             <p>{{ post.text }}</p>    
-            {% if post.group %}   
               <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы {{ posts.group_title }}</a>
-            {% endif %} 
             {% if not forloop.last %}<hr>{% endif %}
         </article>
       {% endfor %}
