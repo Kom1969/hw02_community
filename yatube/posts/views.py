@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 
 
 def index(request):
-    quantity_posts=10 #Количество элементов списка 
+    quantity_posts = 10  # Количество элементов списка
     posts = Post.objects.order_by('-pub_date')[:quantity_posts]
     context = {
         'posts': posts,
@@ -12,12 +12,14 @@ def index(request):
     return render(request, 'posts/index.html', context)
 
 
-""" 
+"""
 Страница с информацией об публикациях;
 view-функция принимает параметр slug из path()
 """
+
+
 def group_posts(request, slug):
-    quantity_posts=10 #Количество элементов списка
+    quantity_posts = 10  # Количество элементов списка
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.order_by('-pub_date')[:quantity_posts]
     context = {
